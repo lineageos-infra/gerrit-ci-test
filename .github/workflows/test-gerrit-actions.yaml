@@ -1,6 +1,11 @@
 name: Gerrit CI testing
 on:
-  workflow_dispatch: {} #todo, input variables here
+  workflow_dispatch: 
+    inputs:
+      ref: 
+        type: string
+      gerrit-ref:
+        type: string
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -8,8 +13,8 @@ jobs:
       - uses: lineageos-infra/fetch-gerrit-change@main
         with:
           repository: LineageOS/hudson
-          gerrit-ref: refs/changes/05/366405/1
-          ref: 05e08dfe5169fcedfe424a53e46e38ff292beeba
+          gerrit-ref: ${{ inputs.gerrit-ref }}
+          ref: ${{ inputs.ref }}
       - name: test
         run: |
           cat README
