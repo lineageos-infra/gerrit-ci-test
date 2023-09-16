@@ -6,6 +6,8 @@ on:
         type: string
       gerrit-ref:
         type: string
+      change:
+        type: string
 jobs:
   build:
     runs-on: ubuntu-latest
